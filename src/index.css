@@ -2,7 +2,14 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-:root {
+@theme {
+  --font-body: Inter, sans-serif;
+  --color-lagoon: oklch(0.72 0.11 221.19);
+  --color-coral: oklch(0.74 0.17 40.24);
+  --color-driftwood: oklch(0.79 0.06 74.59);
+  --color-tide: oklch(0.49 0.08 205.88);
+  --color-dusk: oklch(0.82 0.15 72.09);
+
   --container-padding: 1rem;
   --color-lwsGreen: #00d991;
   --color-deepDark: #17181c;
@@ -10,8 +17,49 @@
   --color-lighterDark: #27292f;
 }
 
-body {
-  font-family: "Inter", sans-serif;
+@layer base {
+  body {
+    @apply bg-deepDark font-body text-gray-100;
+  }
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+@utility card {
+  @apply rounded-md border border-[#3F3F3F] bg-mediumDark px-4 py-4 lg:px-7 lg:py-5;
+}
+
+@layer components {
+  .btn-primary {
+    @apply flex-center gap-2 rounded-md bg-lighterDark px-5 py-2.5 text-sm font-medium text-white hover:bg-deepDark lg:text-lg;
+  }
+  .icon-btn {
+    @apply flex-center rounded-md bg-lighterDark  p-1.5  font-medium  text-white hover:bg-deepDark;
+  }
+
+  .form-control {
+    @apply mb-6 space-y-2.5;
+  }
+  .auth-label {
+    @apply leading-[138%] lg:text-lg;
+  }
+  .auth-input {
+    @apply w-full rounded-md border border-[#CCCCCC]/[14%] bg-lighterDark  p-1.5 focus:outline-none lg:p-3;
+  }
+
+  .post-avater {
+    @apply max-w-10 max-h-10 rounded-full lg:max-h-[58px] lg:max-w-[58px];
+  }
+
+  /* Action Modal */
+  .action-modal-container {
+    @apply card absolute right-full top-6 min-w-[200px] divide-y divide-[#3F3F3F] py-2 [&>button]:py-2;
+  }
+
+  .action-menu-item {
+    @apply flex w-full items-center gap-2 text-gray-100 transition-all;
+  }
 }
 
 /* Container class */
@@ -25,8 +73,3 @@ body {
 }
 
 /* Utility classes */
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
